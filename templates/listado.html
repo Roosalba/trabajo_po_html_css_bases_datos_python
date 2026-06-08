@@ -1,0 +1,29 @@
+<link rel="stylesheet" 
+href="{{url_for('static', filename = 'css/estilo.css')}}">
+
+
+<h1>Listado de Libros</h1>
+<h3>Listado de Registros</h3>
+
+<table class = "tabla-libros">
+    <thead>
+        <tr>
+            <th>ISBN</th>
+            <th>Titulo</th>
+            <th>AUTOR</th>
+            <th>DISPONIBILIDAD</th>
+            <th>CATALOGO</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for li in libros %}
+    <tr>
+        <td>{{ li.isbn }}</td>
+        <td>{{ li.titulo }}</td>
+        <td>{{ li.autor }}</td>
+        <td>{{ li.disponible }}</td>
+        <td>{{ li.id_catalogo }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>

@@ -11,16 +11,19 @@ mysql=MySQL(app)
 
 @app.route('/')
 def index():
-   cur=mysql.connection.cursor()
-   cur.execute('select * from libro')
-   resultados=cur.fetchall()
-   cur.close()
-   return render_template('libro.html', libros=resultados)
+  
+   return 'mi primera pagina'
 
 
 
 @app.route('/registrar', methods = ['GET', 'POST'])
 def registro():
+    if request.method=='GET':
+        cur=mysql.connection.cursor()
+        cur.execute("select * from catalogo")
+        resultados=cur.fetchall()
+        cur.close()
+        return render_template('libro.html', catalogo=resultados)
     if request.method == 'POST':
         ISBN = request.form['isbn']
         TITULO = request.form['titulo']
@@ -34,7 +37,18 @@ def registro():
                     (ISBN, TITULO, AUTOR, DISPONIBILIDAD, CATALOGO))
         mysql.connection.commit()
         cur.close()
-        return render_template('libro.html')
+        return render_template('listar')
+
+
+
+@app.route('/listado')
+def listar():
+   cur=mysql.connection.cursor()
+   cur.execute('select * from libro')
+   resultados=cur.fetchall()
+   cur.close()
+   return render_template('listado.html', libros=resultados)
+
 
 
 

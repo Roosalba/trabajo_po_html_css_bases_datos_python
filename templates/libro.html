@@ -12,35 +12,16 @@ href="{{url_for('static', filename = 'css/estilo.css')}}">
     <label for="">Disponible</label>
     <input type="text" name="disponible"> <br> <br>
     <label for="">CATALOGO</label>
-    <input type="number" name="catalogo"> <br> <br>
-    <button type="submit">Guardar</button> <br> <br>
-    
+    <select name="catalogo" id="">
+        <option value="seleciona un catalogo"></option>
+        {%for cata in catalogo%}
+        <option value="{{cata.id_catalogo}}">CATALOGO:{{cata.id_catalogo}} BIBLIOTECA {{cata.id_biblioteca}} </option>
+        {% endfor %}
+    <\select> <br> </br> 
+
+    <button type="submit">Guardar</button>
 </form>
 
 
-<h1>Listado de Libros</h1>
-
-<table class = "tabla-libros">
-    <thead>
-        <tr>
-            <th>ISBN</th>
-            <th>Titulo</th>
-            <th>AUTOR</th>
-            <th>DISPONIBILIDAD</th>
-            <th>CATALOGO</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for li in libros %}
-        <tr>
-            <td>{{ li.isbn }}</td>
-            <td>{{ li.titulo }}</td>
-            <td>{{ li.autor }}</td>
-            <td>{{ li.disponible }}</td>
-            <td>{{ li.id_catalogo }}</td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
 
 
