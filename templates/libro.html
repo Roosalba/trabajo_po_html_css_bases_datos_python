@@ -1,27 +1,28 @@
-
-<link rel="stylesheet" 
-href="{{url_for('static', filename = 'css/estilo.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename = 'css/estilo.css')}}">
 
 <form action="/registrar" method="post">
-    <label for="">ISBN</label>
-    <input type="text" name="isbn"> <br> <br>
-    <label for="">TITULO</label>
-    <input type="text" name="titulo"> <br> <br>
-    <label for="">AUTOR</label>
-    <input type="text" name="autor"> <br> <br>
-    <label for="">Disponible</label>
-    <input type="text" name="disponible"> <br> <br>
-    <label for="">CATALOGO</label>
-    <select name="catalogo" id="">
-        <option value="seleciona un catalogo"></option>
-        {%for cata in catalogo%}
-        <option value="{{cata.id_catalogo}}">CATALOGO:{{cata.id_catalogo}} BIBLIOTECA {{cata.id_biblioteca}} </option>
+    <label for="isbn">ISBN</label>
+    <input type="text" name="isbn" id="isbn"> <br> <br>
+    
+    <label for="titulo">TITULO</label>
+    <input type="text" name="titulo" id="titulo"> <br> <br>
+    
+    <label for="autor">AUTOR</label>
+    <input type="text" name="autor" id="autor"> <br> <br>
+    
+    <label for="disponible">Disponible</label>
+    <input type="text" name="disponible" id="disponible"> <br> <br>
+    
+    <label for="catalogo">CATALOGO</label>
+    <select name="catalogo" id="catalogo">
+        <option value="">Selecciona un catálogo</option>
+        {% for cata in catalogo %}
+        <option value="{{cata.id_catalogo}}">CATALOGO: {{cata.id_catalogo}} BIBLIOTECA {{cata.id_biblioteca}}</option>
         {% endfor %}
-    <\select> <br> </br> 
+    </select> <br> <br> 
 
     <button type="submit">Guardar</button>
 </form>
-
 
 
 

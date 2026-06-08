@@ -1,5 +1,5 @@
 from flask_mysqldb import MySQL
-from flask import Flask,render_template, request
+from flask import Flask,render_template, request , redirect , url_for 
 from config import Config
 
 
@@ -37,7 +37,7 @@ def registro():
                     (ISBN, TITULO, AUTOR, DISPONIBILIDAD, CATALOGO))
         mysql.connection.commit()
         cur.close()
-        return render_template('listar')
+        return redirect(url_for('listar'))
 
 
 
