@@ -23,6 +23,13 @@ href="{{url_for('static', filename = 'css/estilo.css')}}">
         <td>{{ li.autor }}</td>
         <td>{{ li.disponible }}</td>
         <td>{{ li.id_catalogo }}</td>
+        <td>{{ li.id_catalogo }}</td>
+        <td>{{ li.id_biblioteca }}</td>
+        <td>{{ li.nombre}}</td>
+        <td> 
+            <a href="/editar/{{li.isbn}}">Editar</a>
+            <a href="/eliminar/{{li.isbn}}">Eliminar</a>
+        </td>
     </tr>
     {% endfor %}
     </tbody>

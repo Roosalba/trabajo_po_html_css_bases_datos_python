@@ -8,11 +8,36 @@ app.config.from_object(Config)
 app.secret_key = 'clave_secreta'
 mysql=MySQL(app)
 
+@app.route('\listado')
+
+def listado():
+    cur=mysql.connection.cursor()
+    cur.execute(''' select li.*,cat.*,bib.nombre from libro li
+                join catalogo cat on li.id_catalogo=cat.id_catalogo
+                join biblioteca bib on cat.id_biblioteca=bib.id_biblioteca
+   
+    ''')
+
+    resultados= cur.fetchall()
+    cur.close()
+    return render_template('listado.html', libros=resultados)
+
+
 
 @app.route('/')
 def index():
   
-   return 'mi primera pagina'
+   return render_template('index.html')
+
+
+@app.route('/editar')
+def obtener():
+    cur=mysql.connection.cursor()
+    cur.execute('select * from libro where isbn =%s' %(id))
+    resultados=cur.fetchall()
+    cur.close()
+  
+    return render_template('editar.html',catalogolibro=resultados[0])
 
 
 
