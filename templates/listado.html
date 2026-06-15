@@ -1,18 +1,19 @@
-<link rel="stylesheet" 
-href="{{url_for('static', filename = 'css/estilo.css')}}">
-
+<link rel="stylesheet" href="{{url_for('static', filename='css/estilo.css')}}">
 
 <h1>Listado de Libros</h1>
 <h3>Listado de Registros</h3>
 
-<table class = "tabla-libros">
+<table class="tabla-libros">
     <thead>
         <tr>
             <th>ISBN</th>
-            <th>Titulo</th>
-            <th>AUTOR</th>
-            <th>DISPONIBILIDAD</th>
-            <th>CATALOGO</th>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Disponibilidad</th>
+            <th>Catálogo</th>
+            <th>Biblioteca</th>
+            <th>Nombre Biblioteca</th>
+            <th>Opciones</th>
         </tr>
     </thead>
     <tbody>
@@ -23,12 +24,11 @@ href="{{url_for('static', filename = 'css/estilo.css')}}">
         <td>{{ li.autor }}</td>
         <td>{{ li.disponible }}</td>
         <td>{{ li.id_catalogo }}</td>
-        <td>{{ li.id_catalogo }}</td>
         <td>{{ li.id_biblioteca }}</td>
-        <td>{{ li.nombre}}</td>
+        <td>{{ li.nombre }}</td>
         <td> 
-            <a href="/editar/{{li.isbn}}">Editar</a>
-            <a href="/eliminar/{{li.isbn}}">Eliminar</a>
+            <a href="/editar/{{ li.isbn }}">Editar</a>
+            <a href="/eliminar/{{ li.isbn }}">Eliminar</a>
         </td>
     </tr>
     {% endfor %}

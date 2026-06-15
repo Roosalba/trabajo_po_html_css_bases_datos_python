@@ -1,25 +1,27 @@
-<link rel="stylesheet" href="{{url_for('static', filename = 'css/estilo.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/estilo.css')}}">
 
-<form action="/actualizar" method="post">
-    <label for="isbn">ISBN</label>
-    <input type="text" name="isbn" id="isbn"> <br> <br>
+<form action="/actualizar/{{ libro.isbn }}" method="post">
+    <label for="isbn">ISBN (No editable)</label>
+    <input type="text" name="isbn" value="{{ libro.isbn }}" readonly> <br> <br>
     
     <label for="titulo">TITULO</label>
-    <input type="text" name="titulo" id="titulo"> <br> <br>
+    <input type="text" name="titulo" id="titulo" value="{{ libro.titulo }}"> <br> <br>
     
     <label for="autor">AUTOR</label>
-    <input type="text" name="autor" id="autor"> <br> <br>
+    <input type="text" name="autor" id="autor" value="{{ libro.autor }}"> <br> <br>
     
     <label for="disponible">Disponible</label>
-    <input type="text" name="disponible" id="disponible"> <br> <br>
+    <input type="text" name="disponible" id="disponible" value="{{ libro.disponible }}"> <br> <br>
     
     <label for="catalogo">CATALOGO</label>
     <select name="catalogo" id="catalogo">
-        <option value="">Selecciona un catálogo</option>
+        <option value="{{ libro.id_catalogo }}">{{ libro.id_catalogo }} (Actual)</option>
         {% for cata in catalogo %}
-        <option value="{{cata.id_catalogo}}">CATALOGO: {{cata.id_catalogo}} BIBLIOTECA {{cata.id_biblioteca}}</option>
+            {% if cata.id_catalogo != libro.id_catalogo %}
+            <option value="{{ cata.id_catalogo }}">{{ cata.id_catalogo }}</option>
+            {% endif %}
         {% endfor %}
     </select> <br> <br> 
 
-    <button type="submit">Guardar</button>
+    <button type="submit">Actualizar</button> <br> <br> 
 </form>
